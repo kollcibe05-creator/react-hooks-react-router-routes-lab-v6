@@ -1,24 +1,16 @@
-// src/pages/Directors.jsx
-
-// Only import NavBar, and use the correct path (assuming NavBar is in src/components)
+import {useState, useEffect} from "react"
 import NavBar from '../components/NavBar'; 
 
-const directors = [
- {
-    name: "Scott Derrickson",
-    movies: ["Doctor Strange", "Sinister", "The Exorcism of Emily Rose"],
-  },
-  {
-   name: "Mike Mitchell",
-   movies: ["Trolls", "Alvin and the Chipmunks: Chipwrecked", "Sky High"],
-  },
- {
-  name: "Edward Zwick",
-  movies: ["Jack Reacher: Never Go Back", "Blood Diamond", "The Siege"],
- },
-];
 
 function Directors() {
+const [directors, setDirectors] = useState([])
+
+useEffect(() => {
+  fetch(`http://localhost:4000/directors`)
+  .then(r => r.json())
+  .then(data => setDirectors(data))
+}, [])
+
   return (
     <>
       <header>

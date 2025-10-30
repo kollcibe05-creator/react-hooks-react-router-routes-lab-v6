@@ -9,25 +9,27 @@ const routes = [
    {
     path: "/",
     element: <Home />,
-    errorElement: <ErrorPage />, // handles errors for the entire route tree
+    errorElement: <ErrorPage />,
   },
   {
     path: "/actors",
     element: <Actors />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/directors",
     element: <Directors />,
+    errorElement: <ErrorPage />,
   },
-  {
-  
-    //  ':id' segment allows $ for dynamic URLs 
+  { 
     path: "/movie/:id", 
     element: <Movie />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "*",
-    element: <ErrorPage />
+    element: <ErrorPage />,
+    errorElement: <ErrorPage />,
   }
   ];
 

@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar"
 import {Link}  from "react-router-dom"
+import MovieCard from "../components/MovieCard";
 
-const mockMovies = [
-  { id: 1, title: "Doctor Strange" }, 
-  { id: 2, title: "The Imitation Game" },
-  { id: 3, title: "Trolls" },
-  {id: 4, title: "CryptoBoy"}
-]
 
 function Home() {
+
+  const [movies, setHomeData] = useState([])
+
+  useEffect(() => {
+fetch("http://localhost:4000/movies") 
+.then(r => r.json())
+.then(data => setHomeData(data))
+
+
+  }, [])
   return (
     <>
       <header>
@@ -22,17 +27,13 @@ function Home() {
 <section>
         <h3>Popular Movies</h3>
           <ul>
-           {mockMovies.map((movie) => (
+           {movies.map((movie) => (
            <li key={movie.id}>
-            {/*level 2 heading) */}
             <h2>{movie.title}</h2>
-{/* <Link> to match */}
-<Link to={`/movie/${movie.id}`}>
-    View Info
-    </Link>
-         </li>
+            <MovieCard title={movie.title} id={movie.id}/>
+           </li>
         ))}
-        </ul>
+        </ul>z
        </section>
 
       </main>
